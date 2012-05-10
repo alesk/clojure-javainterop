@@ -1,0 +1,26 @@
+<project>
+
+  <path id="classpath.clj">
+    <fileset dir=".">
+      <include name="*.jar"/>
+      <include name="lib/*.jar"/>
+    </fileset>
+  </path>
+
+  <target name="clean">
+    <delete dir="build"/>
+  </target>
+
+  <target name="compile">
+    <mkdir dir="build/classes"/>
+    <javac srcdir="src/java/" destdir="build/classes" includes="**/*.java" 
+      classpathref="classpath.clj" />
+  </target>
+
+  <target name="jar" depends="compile">
+    <mkdir dir="build"/>
+    <jar destfile="build/caller.jar" basedir="build/classes" includes="Caller.class">
+    </jar>
+  </target>
+</project>
+
