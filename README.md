@@ -1,33 +1,35 @@
-# javainterop
+# Clojure-javainterop
 
-This project serves as an example to call clojure functions from java.
-The motivation is to produce a tiny java wrapper which helps when including
-clojure code in application server or similar environments.
+The aim of this project is to demonstrate a way to write lightweight
+EJB's using clojure and deploying without using AST.
 
-If we use `clojure.lang.*` mechanism to create oneway interop with java,
-there is no need to employ AOT thus avoid coupling all libraries in to one huge jar.
+# Installation
 
-Leightweight deployment is possible.
+Download OpenEJB from and unpack it to home directory:
 
+    http://www.apache.org/dyn/closer.cgi/openejb/openejb-4.0.0/openejb-standalone-4.0.0.tar.gz
 
-## Usage
+Download clojure 1.3 from:
 
-Download and compile dependencies with:
+    http://repo1.maven.org/maven2/org/clojure/clojure/1.3.0/clojure-1.3.0.zip
 
-    lein deps
+and put it to `~/openejb/lib`.    
 
-Create jar file with clojure namspace:
+Go to project directory and ensure proper environment with:
 
-    lein jar
+    source ./envir
 
-Compile java wrapper with:
+Build jar, start openejb and deploy application.
 
     ant jar
+    openejb start&
+    openejb deploy build/caller.jar
 
-Run `javainterop.Caller` from command line, which subsequently loads and calls 
-clojure function:
+Use Client application to call CallerBeanRemote ejb:
 
-    java -cp javainterop-1.0.0-SNAPSHOT.jar:lib/clojure-1.3.0.jar:build/caller.jar Caller
+    java -cp build/caller.jar:$CLASSPATH javainterop.Client "Your name"
+
+EJB is also called every 30 seconds by OpenEJB's scheduler.
 
 ## License
 

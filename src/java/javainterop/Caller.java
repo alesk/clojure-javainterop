@@ -1,20 +1,10 @@
-import clojure.lang.RT;
-import clojure.lang.IFn;
-import clojure.lang.Symbol;
-import clojure.lang.Var;
-import clojure.lang.Compiler;
+package javainterop;
 
-public class Caller {
+import javax.ejb.Remote;
 
-  private static IFn requireFn = RT.var("clojure.core", "require").fn();
-  static {
-    requireFn.invoke(Symbol.intern("javainterop.callme"));
-  }
+@Remote
+public interface Caller {
+  public void timer();
+  public String hello(String name);
 
-  private static IFn hello = RT.var("javainterop.callme", "hello").fn();
-
-  public static void main(String args[]) throws Exception {
-
-    hello.invoke("Aleš");
-  }
 }

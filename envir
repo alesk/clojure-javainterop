@@ -1,0 +1,9 @@
+# execute to set environment variables
+
+export OPENEJB_HOME=$HOME/openejb
+export PATH=$OPENEJB_HOME/bin:$PATH
+export CLASSPATH=$OPENEJB_HOME/lib/openejb-client-4.0.0.jar:$OPENEJB_HOME/lib/javaee-api-6.0-3.jar:$OPENEJB_HOME/lib/clojure-1.3.0.jar
+
+  
+
+

@@ -1,9 +1,10 @@
 <project>
 
+  <property environment="env"/>
+
   <path id="classpath.clj">
     <fileset dir=".">
-      <include name="*.jar"/>
-      <include name="lib/*.jar"/>
+      <include name="${env.OPENEJB_HOME}/lib/*.jar"/>
     </fileset>
   </path>
 
@@ -19,7 +20,9 @@
 
   <target name="jar" depends="compile">
     <mkdir dir="build"/>
-    <jar destfile="build/caller.jar" basedir="build/classes" includes="Caller.class">
+    <jar destfile="build/caller.jar">
+      <fileset dir="build/classes" includes="**/*.class"/>
+      <fileset dir="src/clojure" includes="**/*.clj"/>
     </jar>
   </target>
 </project>

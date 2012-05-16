@@ -1,3 +1,3 @@
 (ns javainterop.callme)
 
-(defn hello [name] (println (str "Hello " name "!")))
+(defn hello [name] (str "Hello you " name "!"))
